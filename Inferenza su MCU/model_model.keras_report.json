@@ -1,0 +1,315 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "analyze --target stm32l4 --name model -m C:/Users/Windows/Desktop/TIROCINIO GITHUB/Modelli Testati/model.keras --compression none --verbosity 1 --allocate-inputs --allocate-outputs --workspace C:/Users/Windows/AppData/Local/Temp/mxAI_workspace34481829031700017292344736539019248 --output C:/Users/Windows/Desktop/TIROCINIO GITHUB/Inferenza su MCU",
+    "cli_version": {
+        "extra": "19894",
+        "major": 1,
+        "micro": 0,
+        "minor": 0
+    },
+    "cli_version_str": "1.0.0-19894",
+    "code_size": 0,
+    "compression": [],
+    "date_time": "2024-11-19T14:22:40+0100",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "analyze",
+    "exec_duration": 0.0,
+    "hash": "0xcab78a860cb105eb25f3375c58d9636b",
+    "inputs": [
+        "input_1"
+    ],
+    "layers": [
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 396,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        99
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "input_1",
+            "original": "InputLayer",
+            "type": "Input"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "input_1"
+            ],
+            "name": "reshape",
+            "original": "Reshape",
+            "type": "Reshape"
+        },
+        {
+            "c_id": [
+                0,
+                1
+            ],
+            "extras": {
+                "n_macc": 29730,
+                "n_params": 330,
+                "psize": 1320,
+                "rom_output": {
+                    "c_size": 11880,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        99,
+                        30,
+                        1
+                    ]
+                },
+                "rom_size": 1320
+            },
+            "id": 2,
+            "inputs": [
+                "reshape"
+            ],
+            "name": "conv2d_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 2970,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 11880,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        99,
+                        30,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [
+                "conv2d_conv2d"
+            ],
+            "name": "conv2d",
+            "original": "Conv2D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                2,
+                3
+            ],
+            "extras": {
+                "n_macc": 712840,
+                "n_params": 7240,
+                "psize": 28960,
+                "rom_output": {
+                    "c_size": 15840,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        99,
+                        40,
+                        1
+                    ]
+                },
+                "rom_size": 28960
+            },
+            "id": 3,
+            "inputs": [
+                "conv2d"
+            ],
+            "name": "conv2d_1_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 3960,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 15840,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        99,
+                        40,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 3,
+            "inputs": [
+                "conv2d_1_conv2d"
+            ],
+            "name": "conv2d_1",
+            "original": "Conv2D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 4,
+            "inputs": [
+                "conv2d_1"
+            ],
+            "name": "flatten",
+            "original": "Flatten",
+            "type": "Reshape"
+        },
+        {
+            "c_id": [
+                4,
+                5
+            ],
+            "extras": {
+                "n_macc": 253504,
+                "n_params": 253504,
+                "psize": 1014016,
+                "rom_output": {
+                    "c_size": 256,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        64
+                    ]
+                },
+                "rom_size": 1014016
+            },
+            "id": 5,
+            "inputs": [
+                "flatten"
+            ],
+            "name": "dense_dense",
+            "original": "Dense",
+            "type": "Dense"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 64,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 256,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        64
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 5,
+            "inputs": [
+                "dense_dense"
+            ],
+            "name": "dense",
+            "original": "Dense",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                6
+            ],
+            "extras": {
+                "n_macc": 65,
+                "n_params": 65,
+                "psize": 260,
+                "rom_output": {
+                    "c_size": 4,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1
+                    ]
+                },
+                "rom_size": 260
+            },
+            "id": 6,
+            "inputs": [
+                "dense"
+            ],
+            "name": "dense_1",
+            "original": "Dense",
+            "type": "Dense"
+        }
+    ],
+    "model_files": [
+        "C:\\Users\\Windows\\Desktop\\TIROCINIO GITHUB\\Modelli Testati\\model.keras"
+    ],
+    "model_n_params": 261139,
+    "model_name": "model",
+    "model_size": 1044556,
+    "model_type": "keras",
+    "name": "model",
+    "outputs": [
+        "dense_1"
+    ],
+    "ram_io_size": [
+        0,
+        0
+    ],
+    "ram_size": 28440,
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 396,
+            "c_type": "float",
+            "name": "input_1"
+        }
+    ],
+    "rom_n_macc": 1003133,
+    "rom_outputs": [
+        {
+            "c_size": 4,
+            "c_type": "float",
+            "name": "dense_1"
+        }
+    ],
+    "rom_size": 1044556,
+    "strategy": "",
+    "tools_api_version": "1.0.0-19894",
+    "tools_version": "1.0.0-19894",
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
+}
