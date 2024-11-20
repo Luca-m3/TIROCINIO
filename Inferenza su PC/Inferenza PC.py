@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 #modulo per calcolare il tempo di inferenza
 import time  
-# carico modello originale e dati
+print("Carico il modello originale ed i dati in input")
 interpreter = tf.lite.Interpreter(model_path='model_convertita.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
@@ -16,6 +16,7 @@ lunghezza_finestra = 99
 #crea il file di report dove si scrivono i tempi di inferenza
 with open('report_originale_py.txt', 'w') as report:
 #ciclo nel quale si creano le finestre
+    print("Creo le finestre ed eseguo le inferenze")
     for i in range(len(data) - lunghezza_finestra + 1):
 #standardizzazione dell'input e creazione della j-esima finestra
         finestre = (data[i:i + lunghezza_finestra] - 522.0) / 814.0
@@ -29,12 +30,12 @@ with open('report_originale_py.txt', 'w') as report:
         elapsed_time = end_time - start_time 
         report.write(f"ciclo {i}: {elapsed_time:.8f} secondi\n")
         output.append(output_data)
-# Salva l'output
+print ("Salvo l'output del modello originale in output_originale_py.bin ed i tempi di inferenza in report_originale_py.txt")
 float_vector = np.array([arr.item() for arr in output], dtype=np.float32)
 float_vector.tofile('output_originale_py.bin')
 
 
-# carico modello quantizzato e dati
+print("Carico il modello ottimizzato ed i dati in input")
 interpreter = tf.lite.Interpreter(model_path='ottimizzata.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
@@ -45,7 +46,7 @@ output = []
 lunghezza_finestra = 99
 #crea il file di report dove si scrivono i tempi di inferenza
 with open('report_quant_py.txt', 'w') as report:
-#ciclo nel quale si creano le finestre
+    print("Creo le finestre ed eseguo le inferenze")
     for i in range(len(data) - lunghezza_finestra + 1):
 #standardizzazione dell'input e creazione della j-esima finestra
         finestre = (data[i:i + lunghezza_finestra] - 522.0) / 814.0
@@ -59,6 +60,7 @@ with open('report_quant_py.txt', 'w') as report:
         elapsed_time = end_time - start_time 
         report.write(f"ciclo {i}: {elapsed_time:.8f} secondi\n")
         output.append(output_data)
-# Salva l'output
+print ("Salvo l'output del modello ottimizzato in output_quant_py.bin ed i tempi di inferenza in report_quant_py.txt.txt")
 float_vector = np.array([arr.item() for arr in output], dtype=np.float32)
 float_vector.tofile('output_quant_py.bin')
+input ("fine. Premere invio per terminare.")
